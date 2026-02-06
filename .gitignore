@@ -1,0 +1,17 @@
+# Terraform state and crash logs
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+.terraform.*
+
+# Sensitive variable files
+*.tfvars
+*.tfvars.json
+
+# Editor and OS files
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*~
