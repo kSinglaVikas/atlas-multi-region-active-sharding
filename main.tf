@@ -11,7 +11,7 @@ resource "mongodbatlas_advanced_cluster" "global_cluster" {
         {
           electable_specs = {
             instance_size = "M40"
-            node_count    = 2
+            node_count    = 1
             autoscaling = {
               compute = {
                 enabled            = true
@@ -39,6 +39,22 @@ resource "mongodbatlas_advanced_cluster" "global_cluster" {
           provider_name = "AWS"
           priority      = 6
           region_name   = "AP_SOUTH_2"
+        },
+        {
+          electable_specs = {
+            instance_size = "M40"
+            node_count    = 1
+            autoscaling = {
+              compute = {
+                enabled            = true
+                min_instance_size = "M30"
+                max_instance_size = "M40"
+              }
+            }
+          }
+          provider_name = "GCP"
+          priority      = 5
+          region_name   = "ASIA_SOUTH_2"
         }
       ]
     },
@@ -49,7 +65,7 @@ resource "mongodbatlas_advanced_cluster" "global_cluster" {
         {
           electable_specs = {
             instance_size = "M40"
-            node_count    = 2
+            node_count    = 1
             autoscaling = {
               compute = {
                 enabled            = true
@@ -77,21 +93,37 @@ resource "mongodbatlas_advanced_cluster" "global_cluster" {
           provider_name = "AWS"
           priority      = 6
           region_name   = "AP_SOUTH_2"
+        },
+        {
+          electable_specs = {
+            instance_size = "M40"
+            node_count    = 1
+            autoscaling = {
+              compute = {
+                enabled            = true
+                min_instance_size = "M30"
+                max_instance_size = "M40"
+              }
+            }
+          }
+          provider_name = "GCP"
+          priority      = 5
+          region_name   = "ASIA_SOUTH_2"
         }
       ]
     },
-    # HyderabadZone
+    # USZone Shard 1: AWS is primary
     {
       zone_name = "HyderabadZone"
       region_configs = [
         {
           electable_specs = {
             instance_size = "M30"
-            node_count    = 2
+            node_count    = 1
           }
           provider_name = "AWS"
           priority      = 7
-          region_name   = "AP_SOUTH_2"
+          region_name   = "US_EAST_1"
         },
         {
           electable_specs = {
@@ -100,7 +132,16 @@ resource "mongodbatlas_advanced_cluster" "global_cluster" {
           }
           provider_name = "AWS"
           priority      = 6
-          region_name   = "AP_SOUTH_1"
+          region_name   = "US_WEST_1"
+        },
+        {
+          electable_specs = {
+            instance_size = "M30"
+            node_count    = 1
+          }
+          provider_name = "GCP"
+          priority      = 5
+          region_name   = "EASTERN_US"
         }
       ]
     }
