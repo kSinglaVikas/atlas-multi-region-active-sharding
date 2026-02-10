@@ -114,7 +114,7 @@ resource "mongodbatlas_advanced_cluster" "global_cluster" {
     },
     # USZone Shard 1: AWS is primary
     {
-      zone_name = "HyderabadZone"
+      zone_name = "USZone"
       region_configs = [
         {
           electable_specs = {
