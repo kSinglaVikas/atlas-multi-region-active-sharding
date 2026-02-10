@@ -5,12 +5,22 @@
 
 // Step 1: Assign zone tags to shards
 // ---------------------------------
+use('config');
+
+var shards = db.shards.find().toArray();
+
+print("\n[INFO] Shard Tag Configuration:");
+print("=".repeat(50));
+shards.forEach(function(shard) {
+  print("  Shard: " + shard._id);
+});
+
 // MumbaiZone: handles ap-south-1 region
-sh.addShardTag("atlas-ewfst6-shard-0", "MumbaiZone");
-sh.addShardTag("atlas-ewfst6-shard-1", "MumbaiZone");
+sh.addShardTag(shards[0]._id, "MumbaiZone");
+sh.addShardTag(shards[1]._id, "MumbaiZone");
 
 // USZone: handles us-east-1 region
-sh.addShardTag("atlas-ewfst6-shard-2", "USZone");
+sh.addShardTag(shards[2]._id, "USZone");
 
 // Verify shard tags
 use('config');
